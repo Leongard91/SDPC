@@ -1,0 +1,144 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Calculate door costs
+{% endblock %}
+
+{% block main %}
+{% if message %}
+    <div style = "background-color: rgba(255, 179, 179, 0.3); color: #ff0000; text-align: center;">
+        {{ code }}
+        {{ message }}
+        <a href = "/calculate">Try again</a>
+    </div>
+    <br>
+{% endif %}
+    <form action="/calculate" method="post">
+        <div class="form-group">
+            <select name="door_type" class="form-control">
+                <option disabled selected value="">Door type</option>
+                {% for door_type in door_types %}
+                    <option value="{{ door_type[0] }}">{{ door_type[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="size" class="form-control">
+                <option disabled selected value="">Size, mm</option>
+                {% for size in sizes %}
+                    <option value="{{ size[0] }}">{{ size[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="open_side" class="form-control">
+                <option disabled selected value="">Open Side</option>
+                {% for open_side in open_sides %}
+                    <option value="{{ open_side[0] }}">{{ open_side[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="handle_color" class="form-control">
+                <option disabled selected value="">Handle Color</option>
+                {% for handle_color in handle_colors %}
+                    <option value="{{ handle_color[0] }}">{{ handle_color[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="frame_and_hinge_color" class="form-control">
+                <option disabled selected value="">Frame and hinge color</option>
+                {% for paint_color in paint_colors %}
+                    <option value="{{ paint_color[0] }}">{{ paint_color[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="quarter_color" class="form-control">
+                <option disabled selected value="">Quarter color</option>
+                {% for paint_color in paint_colors %}
+                    <option value="{{ paint_color[0] }}">{{ paint_color[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select id="outside_model" onchange="addActivityItem('outside_model', 'mod1')" name="outside_model" class="form-control">
+                <option disabled selected value="">Outside (hinge side) model</option>
+                {% for model in models %}
+                    <option value="{{ model[0] }}">{{ model[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div id ="mod1"></div>
+        <div class="form-group">
+            <select name="outside_cover" class="form-control">
+                <option disabled selected value="">Outside cover</option>
+                {% for cover in covers %}
+                    <option value="{{ cover[0] }}">{{ cover[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="decor_color" class="form-control">
+                <option disabled selected value="">Decor color</option>
+                {% for cover in covers %}
+                    <option value="{{ cover[0] }}">{{ cover[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select id="inside_model" onchange="addActivityItem('inside_model', 'mod2')" name="inside_model" class="form-control">
+                <option disabled selected value="">Inside model</option>
+                {% for model in models %}
+                    <option value="{{ model[0] }}">{{ model[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div id ="mod2"></div>
+        <div class="form-group">
+            <select name="inside_cover" class="form-control">
+                <option disabled selected value="">Inside cover</option>
+                {% for cover in covers %}
+                    <option value="{{ cover[0] }}">{{ cover[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="latch" class="form-control">
+                <option disabled selected value="">Latches</option>
+                {% for latch in latches %}
+                    <option value="{{ latch[0] }}">{{ latch[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="deinstalling" class="form-control">
+                <option disabled selected value="">Deinstalling</option>
+                {% for y_n in yes_no %}
+                    <option value="{{ y_n[0] }}">{{ y_n[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <select name="installing" class="form-control">
+                <option disabled selected value="">Installing</option>
+                {% for y_n in yes_no %}
+                    <option value="{{ y_n[0] }}">{{ y_n[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Calculate</button>
+    </form>
+
+<script>
+    function addActivityItem(id, mod) {
+        $("#s" + mod).remove() //ensure that smod don't exists
+        var el = document.getElementById(id); 
+        // show id's image in mod
+        if(el.value !== "---"){
+            var pathToImage = "static/img/" + el.value + ".png";
+            $('#' + mod).append("<p id='s" + mod + "'><img src='" + pathToImage + "' width='177' height='325'/></p>");
+        }}
+</script>
+{% endblock %}

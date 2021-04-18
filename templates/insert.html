@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Insert New
+{% endblock %}
+
+{% block main %}
+{% if message %}
+    <div style = "background-color: rgba(255, 179, 179, 0.3); color: #ff0000; text-align: center;">
+        {{ code }}
+        {{ message }}
+        <a href = "/insert">Try again</a>
+    </div>
+    <br>
+{% endif %}
+{% if success == True %}
+    <div style = "background-color: rgb(179, 208, 255, 0.3); color: #0000ff; text-align: center;">
+        Success! 
+        <a href = "/insert">Add more</a>.
+    </div>
+    <br>
+{% endif %}
+    <div><h3>Chose characteristics and value what You want to add.</h3></div><br>
+    <form id="form1" action="/insert" method="post" enctype=multipart/form-data>
+        <div class="form-group">
+            <select id="sel" name="t_name" onchange="addActivityItem('sel', 'mod1')" class="form-control">
+                <option disabled selected value="">Characteristics</option>
+                {% for t_name in t_names %}
+                    <option value="{{ t_name[0] }}">{{ t_name[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="value" placeholder="New Value Name" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" id="price" name="price" placeholder="Price" type="number">
+        </div>
+        <div id ="mod1"></div>
+        <button class="btn btn-primary" type="submit">Insert</button>
+    </form>
+    <script>
+        //image upload script
+        var loadFile = function(event) {
+	    var image = document.getElementById('output');
+	    image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        //show price input if t_name in t_with_price list
+        document.getElementById("sel").addEventListener("change", function(){
+        var t_with_price = ['door_tipes', 'covers', 'models', 'up_locks', 'strips', 'main_locks', 'handles', 'peepholes', 'lock_cylinders', 'latches'];
+        var t_name_v = $('select[name=t_name]').val();
+        //price input visibility chenge
+        if (t_with_price.includes(t_name_v) == false) {
+            price_inp = document.getElementById('price');
+            price_inp.style.visibility = 'hidden';
+        }
+        else {price_inp = document.getElementById('price');
+            price_inp.style.visibility = 'visible';}
+        });
+
+        //if need to upload img append new input to html
+        function addActivityItem(id, mod) {
+        //enshure that mod-marck is free
+        $("#s" + mod).remove()
+        //add new imput field to mod 
+        var el = document.getElementById(id);
+        var count = el.value.length;
+        if(el.value === "models"){
+            $('#' + mod).append("<p id='s" + mod + "'><input style='background-color: #F8F9FB' type=file name=file value='Choose png'></p>");
+        }}
+    </script>
+{% endblock %}

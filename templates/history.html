@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<form target="_blank" action="/print" method="post">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>No</th>
+                <th>Date</th>
+                <th>Door Type</th>
+                <th>Size  W x  S  mm</th>
+                <th>Open side</th>
+                <th>Handle color</th>
+                <th>Outside model</th>
+                <th>Outside cover</th>
+                <th>Inside model</th>
+                <th>Inside cover</th>
+                <th>Total price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td><a href="{{ url_for('static', filename='pdf_arch/%s.pdf'% (row.from_ord_numbs)) }}">{{ row.from_ord_numbs }}</a></td>
+                    <td>{{ row.date }}</td>
+                    <td>{{ row.from_door_tipes }}</td>
+                    <td>{{ row.from_st_size }}</td>
+                    <td>{{ row.from_open_sides }}</td>
+                    <td>{{ row.from_handle_colors }}</td>
+                    <td>{{ row.from_models_out_side_model }}</td>
+                    <td>{{ row.from_covers_out_side_cover }}</td>
+                    <td>{{ row.from_models_in_side_model }}</td>
+                    <td>{{ row.from_covers_in_side_cover }}</td>
+                    <td>{{ "${:,.2f}".format(row.total_price) }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+{% endblock %}

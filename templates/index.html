@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block main %}
+{% if message %}
+    <div style = "background-color: rgba(255, 179, 179, 0.3); color: #ff0000; text-align: center;">
+        {{ code }}
+        {{ message }}
+    </div>
+    <br>
+{% endif %}
+{% if success == True %}
+    <div style = "background-color: rgb(179, 208, 255, 0.3); color: #0000ff; text-align: center;">
+        Success!
+    </div>
+    <br>
+{% endif %}
+    <div><h1>Welcome to the entrance door costs calculator!</h1></div>
+    <div><h4><br>Press "CALCULATE" to start.</h4></div><br>
+    <div><button onclick="window.location.href='/calculate'" class="btn btn-primary" type="submit">CALCULATE</button></div>
+{% endblock %}

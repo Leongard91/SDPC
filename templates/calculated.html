@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Calculated
+{% endblock %}
+
+{% block main %}
+<form target="_blank" action="/print" method="post">
+    <table>
+        <thead>
+            <tr>
+                <th><b>Characteristic</b></th>
+                <th>Value</th>
+                <th><b>Price</b></th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>Door Type</td>
+                    <td>{{ rows['from_door_tipes'] }}</td>
+                    <td>{{ "${:,.2f}".format(price_t[0]) }}</td>
+                </tr>
+                <tr>
+                    <td>Size  W x  S  (mm.)</td>
+                    <td>{{ rows['from_st_size'] }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Open side (L  |   R)</td>
+                    <td>{{ rows['from_open_sides'] }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Handle color</td>
+                    <td>{{ rows['from_handle_colors'] }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Frame and hinge color + quarter</td>
+                    <td>{{ rows['from_paint_colors_frame_color'] }} + {{ rows['from_paint_colors_quoter_color']  }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Decor color</td>
+                    <td>{{ rows['from_covers_decor_color'] }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Outside (hinge side) model / Cover</td>
+                    <td>{{ rows['from_models_out_side_model'] }} / {{ rows['from_covers_out_side_cover'] }}</td>
+                    <td>{{ "${:,.2f}".format(price_t[2] + price_t[3]) }}</td>
+                </tr>
+                <tr>
+                    <td>Inside model / Cover</td>
+                    <td>{{ rows['from_models_in_side_model'] }} / {{ rows['from_covers_in_side_cover'] }}</td>
+                    <td>{{ "${:,.2f}".format(price_t[4] + price_t[5]) }}</td>
+                </tr>
+                <tr>
+                    <td>Upper lock</td>
+                    <td>{{ rows['from_up_locks'] }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Upper lock strip</td>
+                    <td>{{ rows.from_strips_up_lock_strip }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Main lock</td>
+                    <td>{{ rows.from_main_locks }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Main lock strip</td>
+                    <td>{{ rows.from_strips_main_lock_strip }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Handle</td>
+                    <td>{{ rows.from_handles }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Lock cylinder</td>
+                    <td>{{ rows.from_lock_cylinders }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Peephole</td>
+                    <td>{{ rows.from_peepholes }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Latches</td>
+                    <td>{{ rows.from_latches }}</td>
+                    <td>{{ "${:,.2f}".format(price_t[1]) }}</td>
+                </tr>
+                <tr>
+                    <td>Door price:</td>
+                    <td></td>
+                    <td>{{ "${:,.2f}".format(rows.price) }}</td>
+                </tr>
+                <tr>
+                    <td>Deinstalling</td>
+                    <td></td>
+                    <td>{{ "${:,.2f}".format(rows.deinstalling) }}</td>
+                </tr>
+                <tr>
+                    <td>Installing</td>
+                    <td></td>
+                    <td>{{ "${:,.2f}".format(rows.installing) }}</td>
+                </tr>
+                <tr>
+                    <td>Service cost:</td>
+                    <td></td>
+                    <td>{{ "${:,.2f}".format(rows.service_cost) }}</td>
+                </tr>
+                <tr>
+                    <td><b>TOTAL:</b></td>
+                    <td></td>
+                    <td><b>{{ "${:,.2f}".format(rows.total_price) }}</b></td>
+                </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary" name="print" value = {{ rows.from_ord_numbs }} type="submit">PRINT</button>
+</form>
+    <div><br><a href="/calculate">Back to Characteristic</a></div>
+{% endblock %}
