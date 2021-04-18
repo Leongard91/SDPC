@@ -40,7 +40,12 @@ The application can be used by store personal or can be embedded in the main doo
 ```
 python -m flask run
 ```
-
+3. Register in the application and log in.
+4. If You want to open the application with full functionality, should log in like an administrator.
+```
+Username: Admin
+Password: 11111111
+```
 Database information based on [STRAJ](straj.ua) company page.
  
 Enjoy!
