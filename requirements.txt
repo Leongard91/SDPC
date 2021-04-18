@@ -1,0 +1,10 @@
+1. Flask (https://flask.palletsprojects.com/en/1.1.x/installation/);
+2. Flask-Session (https://pypi.org/project/Flask-Session/);
+3. requests (https://pypi.org/project/requests/);
+4. werkzeug (https://pypi.org/project/Werkzeug/);
+5. pywin32 (https://pypi.org/project/pywin32/);
+6. openpyxl (https://pypi.org/project/openpyxl/);
+7. functools (https://pypi.org/project/functools/);
+8. Pillow (https://pypi.org/project/Pillow/);
+
+To start enter in command line: python -m flask run
