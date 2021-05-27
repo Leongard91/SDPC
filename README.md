@@ -109,7 +109,7 @@ Here You can choose the catalog, what You want to update, and enter all necessar
 
 Into some catalogs, You can insert positions title, price, and even upload images.
 Application takes an image in '.png' format, rename and save it in '/static/img' folder.
-You don't have png? Try '.jpg' format! The application automatically converts the jpg to png and does sфme operations.
+You don't have png? Try '.jpg' format! The application automatically converts the jpg to png and does some operations.
 
 ### Access:
 The "SDPC" application is opened for anybody and available on my GitHub page: [Leongard91/SDPC](https://github.com/Leongard91/SDPC)
