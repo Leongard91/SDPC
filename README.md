@@ -1,5 +1,5 @@
 # SDPC
-#### Video Demo: https://youtu.be/JoiPZLTbbaU
+
 ### Description:
 
 "Steel door price calculator"(or SDPC) is an application for calculating door price costs for clients based on real door company information.
